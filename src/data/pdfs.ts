@@ -1,0 +1,71 @@
+export interface PdfDocument {
+  id: string;
+  title: string;
+  description: string;
+  coverImage: string;
+  pdfUrl: string;
+  category: string;
+  publishedYear: number;
+  pages: number;
+  language: string;
+}
+
+export const pdfDocuments: PdfDocument[] = [
+  {
+    id: "document-1",
+    title: "పత్తిపాటి శతకరత్నావళి - 1",
+    description: "విద్యార్థులు నేర్చుకోవాల్సిన, అలవర్చుకోవాల్సిన నీతి, న్యాయం, ధర్మం, సత్యం గురించి",
+    coverImage: "/shatakam1.jpeg",
+    pdfUrl: "/pdfs/pdf1.pdf",
+    category: "Ethics",
+    publishedYear: 2016,
+    pages: 66,
+    language: "Telugu",
+  },
+  {
+    id: "document-2",
+    title: "పత్తిపాటి శతకరత్నావళి - 2",
+    description: "విద్యార్థులు నేర్చుకోవాల్సిన, అలవర్చుకోవాల్సిన నీతి, న్యాయం, ధర్మం, సత్యం గురించి",
+    coverImage: "/shatakam2.jpeg",
+    pdfUrl: "/pdfs/pdf2.pdf",
+    category: "Ethics",
+    publishedYear: 2019,
+    pages: 60,
+    language: "Telugu",
+  },
+  {
+    id: "document-3",
+    title: "పత్తిపాటి శతకరత్నావళి - 3",
+    description: "విద్యార్థులు నేర్చుకోవాల్సిన, అలవర్చుకోవాల్సిన నీతి, న్యాయం, ధర్మం, సత్యం గురించి",
+    coverImage: "/shatakam3.jpeg",
+    pdfUrl: "/pdfs/pdf3.pdf",
+    category: "Ethics",
+    publishedYear: 2020,
+    pages: 68,
+    language: "Telugu",
+  },
+  {
+    id: "document-4",
+    title: "తెలుగు భాషోద్యమ శతకం",
+    description: "తెలుగు సంస్కృతి నేటి పరిస్థితి గురించి",
+    coverImage: "/telugu.jpeg",
+    pdfUrl: "/pdfs/pdf4.pdf",
+    category: "Literacy",
+    publishedYear: 2022,
+    pages: 34,
+    language: "Telugu",
+  },
+  {
+    id: "document-5",
+    title: "నందమూరి శతకం",
+    description: "స్వర్గీయ నటసార్వభౌమ నందమూరి తారకరామారావు గురించి",
+    coverImage: "/Nandhamuri.jpeg",
+    pdfUrl: "/pdfs/pdf5.pdf",
+    category: "NTR",
+    publishedYear: 2023,
+    pages: 32,
+    language: "Telugu",
+  },
+];
+
+export const pdfCategories = [...new Set(pdfDocuments.map((doc) => doc.category))];
