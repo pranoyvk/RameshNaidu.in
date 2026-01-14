@@ -115,12 +115,14 @@ export function PdfCard({ pdf, index = 0 }: PdfCardProps) {
           {/* Mobile Actions */}
           <div className="flex flex-col gap-2 mt-auto mb-4 md:hidden">
             <Button
+              asChild
               className="w-full gap-2"
               size="sm"
-              onClick={() => setIsViewing(true)}
             >
-              <Eye className="w-4 h-4" />
-              Read Online
+              <a href={pdf.pdfUrl} target="_blank" rel="noopener noreferrer">
+                <Eye className="w-4 h-4" />
+                Read Online
+              </a>
             </Button>
 
             <Button
