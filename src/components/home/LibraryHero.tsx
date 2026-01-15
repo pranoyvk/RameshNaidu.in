@@ -34,8 +34,8 @@ export function LibraryHero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-6"
           >
-            Pathipati Ramesh Naidu{" "}
-            <span className="text-gradient">Writings</span>
+            పత్తిపాటి రమేష్ నాయుడు{" "}
+            <span className="text-gradient">రచనలు</span>
           </motion.h1>
 
           {/* Subtitle */}
