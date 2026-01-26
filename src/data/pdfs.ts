@@ -66,6 +66,28 @@ export const pdfDocuments: PdfDocument[] = [
     pages: 32,
     language: "Telugu",
   },
+  {
+    id: "document-6",
+    title: "సమాజపు సమాధి",
+    description: "సామాజిక అంశాల మీద రాసిన కవితలు",
+    coverImage: "/MoralValues.jpeg",
+    pdfUrl: "/pdfs/pdf6.pdf",
+    category: "Moral Values",
+    publishedYear: 2024,
+    pages: 99,
+    language: "Telugu",
+  },
+  {
+    id: "document-7",
+    title: "ఎందుకంటే మేం మనుషులం",
+    description: "సామాజిక అంశాల మీద రాసిన కవితలు",
+    coverImage: "/MoralValues2.jpeg",
+    pdfUrl: "/pdfs/pdf7.pdf",
+    category: "Moral Values",
+    publishedYear: 2025,
+    pages: 101,
+    language: "Telugu",
+  },
 ];
 
 export const pdfCategories = [...new Set(pdfDocuments.map((doc) => doc.category))];
