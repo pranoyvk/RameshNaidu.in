@@ -109,7 +109,7 @@ export const pdfDocuments: PdfDocument[] = [
     publishedYear: 2026,
     pages: 73,
     language: "Telugu",
-  },
+  }, 
 ];
 
 export const pdfCategories = [...new Set(pdfDocuments.map((doc) => doc.category))];
