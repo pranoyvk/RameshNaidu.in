@@ -92,7 +92,7 @@ export function LibraryHero() {
                 </motion.span>
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-base px-8 border-white/20 bg-white/90 text-black hover:bg-white">
+            <Button asChild variant="outline" size="lg" className="text-base px-8 border-white/20 bg-white/90 text-black">
               <Link to="/about">Learn About the Author</Link>
             </Button>
           </motion.div>
