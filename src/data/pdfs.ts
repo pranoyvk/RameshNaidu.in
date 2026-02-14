@@ -99,6 +99,17 @@ export const pdfDocuments: PdfDocument[] = [
     pages: 54,
     language: "Telugu",
   },
+  {
+    id: "document-9",
+    title: "దేశమేగతిన బాగుపడునోయ్",
+    description: "సమాజ చైతన్యం",
+    coverImage: "/Country.png",
+    pdfUrl: "/pdfs/pdf9.pdf",
+    category: "Moral Values",
+    publishedYear: 2026,
+    pages: 73,
+    language: "Telugu",
+  },
 ];
 
 export const pdfCategories = [...new Set(pdfDocuments.map((doc) => doc.category))];

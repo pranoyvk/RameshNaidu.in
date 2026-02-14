@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, LibraryBig } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { InteractiveBackground } from "@/components/ui/InteractiveBackground";
+import { pdfDocuments } from "@/data/pdfs";
 
 export function LibraryHero() {
   const isMobile = useIsMobile();
@@ -58,7 +59,7 @@ export function LibraryHero() {
             className="flex flex-wrap items-center justify-center gap-8 mb-10"
           >
             <div className="text-center">
-              <div className="text-3xl font-serif font-bold text-white">8</div>
+              <div className="text-3xl font-serif font-bold text-white">{pdfDocuments?.length}</div>
               <div className="text-sm text-white/60">Documents</div>
             </div>
             <div className="w-px h-10 bg-white/20" />
