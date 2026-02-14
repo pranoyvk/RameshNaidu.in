@@ -63,25 +63,33 @@ export function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <Link key={link.href} to={link.href}>
-                  <motion.span
-                    whileHover={{ y: -2 }}
-                    className={`relative text-sm font-medium transition-colors ${
-                      location.pathname === link.href
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {link.label}
-                    {location.pathname === link.href && (
-                      <motion.span
-                        layoutId="activeNav"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                      />
-                    )}
-                  </motion.span>
-                </Link>
+              {navLinks.map((link, index) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                >
+                  <Link to={link.href}>
+                    <motion.span
+                      whileHover={{ y: -2, color: "var(--primary)" }}
+                      className={`relative text-sm font-medium transition-colors py-2 ${
+                        location.pathname === link.href
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                      {location.pathname === link.href && (
+                        <motion.span
+                          layoutId="activeNav"
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </motion.span>
+                  </Link>
+                </motion.div>
               ))}
             </div>
 

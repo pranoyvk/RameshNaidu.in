@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Download, BookOpen, Calendar, FileText, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ZoomReveal } from "@/components/ui/ZoomReveal";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogTrigger
 } from "@/components/ui/dialog";
 import type { PdfDocument } from "@/data/pdfs";
 
@@ -53,108 +53,115 @@ export function PdfCard({ pdf, index = 0 }: PdfCardProps) {
         </DialogContent>
       </Dialog>
 
-      <motion.article
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        whileHover={{ y: -8 }}
-        className="group bg-card rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col"
-      >
-        {/* Document Cover */}
-        <div className="relative aspect-[2/3] overflow-hidden bg-secondary">
-          <img
-            src={pdf.coverImage}
-            alt={`Cover of ${pdf.title}`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" />
+      <ZoomReveal delay={index * 0.1}>
+        <motion.article
+          whileHover={{
+            y: -12,
+            transition: { type: "spring", stiffness: 300, damping: 20 }
+          }}
+          className="group bg-card rounded-2xl overflow-hidden border shadow-sm hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
+        >
+          {/* Document Cover */}
+          <div className="relative aspect-[2/3] overflow-hidden bg-secondary">
+            <motion.img
+              src={pdf.coverImage}
+              alt={`Cover of ${pdf.title}`}
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.6 }}
+            />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" />
 
-          {/* Desktop Hover Actions */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileHover={{ opacity: 1, scale: 1 }}
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 hidden md:flex"
-          >
-            <Button
-              className="w-full max-w-[160px] gap-2 shadow-lg"
-              size="sm"
-              onClick={() => setIsViewing(true)}
-            >
-              <Eye className="w-4 h-4" />
-              Read Online
-            </Button>
+            {/* Desktop Hover Actions */}
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 0 }}
+                whileHover={{ opacity: 1, scale: 1, y: 0 }}
+                className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 p-6 hidden md:flex"
+              >
+                <Button
+                  className="w-full max-w-[160px] gap-2 shadow-lg"
+                  size="sm"
+                  onClick={() => setIsViewing(true)}
+                >
+                  <Eye className="w-4 h-4" />
+                  Read Online
+                </Button>
 
-            <Button
-              asChild
-              variant="secondary"
-              className="w-full max-w-[160px] gap-2 shadow-sm"
-              size="sm"
-            >
-              <a href={pdf.pdfUrl} download={`${pdf.title}.pdf`}>
-                <Download className="w-4 h-4" />
-                Download PDF
-              </a>
-            </Button>
-          </motion.div>
+                <Button
+                  asChild
+                  variant="secondary"
+                  className="w-full max-w-[160px] gap-2 shadow-sm"
+                  size="sm"
+                >
+                  <a href={pdf.pdfUrl} download={`${pdf.title}.pdf`}>
+                    <Download className="w-4 h-4" />
+                    Download PDF
+                  </a>
+                </Button>
+              </motion.div>
+            </AnimatePresence>
 
-          {/* Category Badge */}
-          <Badge className="absolute top-4 left-4 bg-primary/90 hover:bg-primary shadow-sm">
-            {pdf.category}
-          </Badge>
-        </div>
-
-        {/* Document Info */}
-        <div className="p-5 flex flex-col flex-1">
-          <h3 className="font-serif text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-            {pdf.title}
-          </h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-            {pdf.description}
-          </p>
-
-          {/* Mobile Actions */}
-          <div className="flex flex-col gap-2 mt-auto mb-4 md:hidden">
-            <Button
-              asChild
-              className="w-full gap-2"
-              size="sm"
-            >
-              <a href={pdf.pdfUrl} target="_blank" rel="noopener noreferrer">
-                <Eye className="w-4 h-4" />
-                Read Online
-              </a>
-            </Button>
-
-            <Button
-              asChild
-              variant="secondary"
-              className="w-full gap-2"
-              size="sm"
-            >
-              <a href={pdf.pdfUrl} download={`${pdf.title}.pdf`}>
-                <Download className="w-4 h-4" />
-                Download PDF
-              </a>
-            </Button>
+            {/* Category Badge */}
+            <Badge className="absolute top-4 left-4 bg-primary/90 hover:bg-primary shadow-sm z-20">
+              {pdf.category}
+            </Badge>
           </div>
 
-          {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground pt-4 border-t">
-            <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" />
-              {pdf.publishedYear}
-            </span>
-            <span className="flex items-center gap-1">
-              <FileText className="w-3.5 h-3.5" />
-              {pdf.pages} pages
-            </span>
-            <span className="flex items-center gap-1">
-              <BookOpen className="w-3.5 h-3.5" />
-              {pdf.language}
-            </span>
+          {/* Document Info */}
+          <div className="p-5 flex flex-col flex-1">
+            <h3 className="font-serif text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+              {pdf.title}
+            </h3>
+            <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+              {pdf.description}
+            </p>
+
+            {/* Mobile Actions */}
+            <div className="flex flex-col gap-2 mt-auto mb-4 md:hidden">
+              <Button
+                asChild
+                className="w-full gap-2"
+                size="sm"
+              >
+                <a href={pdf.pdfUrl} target="_blank" rel="noopener noreferrer">
+                  <Eye className="w-4 h-4" />
+                  Read Online
+                </a>
+              </Button>
+
+              <Button
+                asChild
+                variant="secondary"
+                className="w-full gap-2"
+                size="sm"
+              >
+                <a href={pdf.pdfUrl} download={`${pdf.title}.pdf`}>
+                  <Download className="w-4 h-4" />
+                  Download PDF
+                </a>
+              </Button>
+            </div>
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground pt-4 border-t">
+              <span className="flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5" />
+                {pdf.publishedYear}
+              </span>
+              <span className="flex items-center gap-1">
+                <FileText className="w-3.5 h-3.5" />
+                {pdf.pages} pages
+              </span>
+              <span className="flex items-center gap-1 group-hover:text-primary transition-colors">
+                <BookOpen className="w-3.5 h-3.5" />
+                {pdf.language}
+              </span>
+            </div>
           </div>
-        </div>
-      </motion.article>
+        </motion.article>
+      </ZoomReveal>
     </>
   );
 }

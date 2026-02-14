@@ -88,6 +88,17 @@ export const pdfDocuments: PdfDocument[] = [
     pages: 101,
     language: "Telugu",
   },
+  {
+    id: "document-8",
+    title: "క్రీడాకృత్య మాలిక",
+    description: "ప్రత్యేక అవసరాలు గల పిల్లల వ్యాయామం కోసం అనువదించిన పుస్తకం",
+    coverImage: "/sports.png",
+    pdfUrl: "/pdfs/pdf8.pdf",
+    category: "Sports & games",
+    publishedYear: 2026,
+    pages: 54,
+    language: "Telugu",
+  },
 ];
 
 export const pdfCategories = [...new Set(pdfDocuments.map((doc) => doc.category))];
