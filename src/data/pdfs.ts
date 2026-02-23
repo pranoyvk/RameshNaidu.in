@@ -109,7 +109,51 @@ export const pdfDocuments: PdfDocument[] = [
     publishedYear: 2026,
     pages: 73,
     language: "Telugu",
-  }, 
+  },
+  {
+    id: "document-10",
+    title: "ఏడవ ఋతువు... అమ్మ!",
+    description: "స్వతంత్ర కవితలు",
+    coverImage: "/Amma.png",
+    pdfUrl: "/pdfs/pdf10.pdf",
+    category: "Social responsibility",
+    publishedYear: 2026,
+    pages: 100,
+    language: "Telugu",
+  },
+];
+
+export const prizes = [
+  {
+    organization: "తెలుగు సాహితి సాంస్కృతిక సమితి",
+    year: "2023",
+    image: "/Price1.png",
+    color: "from-amber-500/20 to-transparent",
+  },
+  {
+    organization: "మదనపల్లి సాహితి కళా వేదిక",
+    year: "2022",
+    image: "/Price2.png",
+    color: "from-yellow-500/20 to-transparent",
+  },
+  {
+    organization: "స్వర్ణోత్సవ ప్రారంభ వేడుకలు",
+    year: "2024",
+    image: "/Price3.png",
+    color: "from-blue-500/20 to-transparent",
+  },
+  {
+    organization: "ప్రపంచ తెలుగు రచయితల సంఘం",
+    year: "2020",
+    image: "/Price4.png",
+    color: "from-orange-500/20 to-transparent",
+  },
+  {
+    organization: "అమర రాజా బ్యాటరీస్ శ్రీ రాజన్న ట్రస్ట్",
+    year: "2021",
+    image: "/Price5.png",
+    color: "from-purple-500/20 to-transparent",
+  },
 ];
 
 export const pdfCategories = [...new Set(pdfDocuments.map((doc) => doc.category))];
