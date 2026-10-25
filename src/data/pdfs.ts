@@ -121,6 +121,17 @@ export const pdfDocuments: PdfDocument[] = [
     pages: 100,
     language: "Telugu",
   },
+  {
+    id: "document-11",
+    title: "పొడుపు కథలు పద్య రత్నావళి",
+    description: "పొడుపు కథలు",
+    coverImage: "/nani_poems.jpeg",
+    pdfUrl: "/pdfs/pdf11.pdf",
+    category: "Moral Values",
+    publishedYear: 2026,
+    pages: 120,
+    language: "Telugu",
+  }
 ];
 
 export const prizes = [
